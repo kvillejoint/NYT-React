@@ -1,8 +1,9 @@
 //Dependencies
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let ArticleSchema = new  Schema ({
+//Setup article schema
+let ArticleSchema = new Schema ({
     title: {
         type: String,
         trim: true,
@@ -22,7 +23,7 @@ let ArticleSchema = new  Schema ({
 });
 
 //Create article model
-let Article = mongoose.model('Article', ArticleSchema);
+let Article = mongoose.model("Article", ArticleSchema);
 
 //Export
 module.exports = Article;
