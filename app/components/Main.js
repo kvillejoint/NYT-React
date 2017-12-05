@@ -1,117 +1,69 @@
-//Dependencies
-const axios = require("axios");
-//Include React
-const React = require("react");
-const ReactDOM = require("react-dom");
-const ReactApp = require("create-react-app");
+// Include React as a dependency
+var React = require("react");
+// Including the Link component from React Router to navigate within our application without full page reloads
+// https://github.com/ReactTraining/react-router/blob/master/docs/API.md#link
+var Link = require("react-router").Link;
 
-// Here we include all of the sub-components
-const Form = require("./children/Form");
-const Saved = require("./children/Saved");
-const Search = require("./children/Search");
+// Create the Main component
+var Main = React.createClass({
 
-// Helper for making AJAX requests to our API
-const helpers = require("./utils/helpers");
+  render: function() {
 
-//Create Main component
-let Main = React.createClass({
-    //set initial state
-    getInitialState: function() {
-        return {
-            topic: "",
-            startYear: "",
-            endYear: "",
-            results:[],
-            savedArticles: []
-        }
-    },
-    //Functions for children to update parent file
-    setTerm: function(topic, startYear, endYear) {
-        this.setState({
-            topic: topic,
-            startYear: startYear,
-            endYear: endYear
-        })
-    },
-    getArticle: function(){
-		axios.get('/api/saved')
-			.then(function(response){
-				this.setState({
-					savedArticles: response.data
-				});
-			}.bind(this));
-	},
+    return (
+      // We can only render a single div. So we need to group everything inside of this main-container one
+      <div className="main-container">
+        <div className="container">
+          {/* Navbar */}
+          <nav className="navbar navbar-default" role="navigation">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <button
+                  type="button"
+                  className="navbar-toggle"
+                  data-toggle="collapse"
+                  data-target=".navbar-ex1-collapse"
+                >
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                <Link className="navbar-brand" to="/">NYT-React</Link>
+              </div>
 
-    saveArticle: function(title, date, url) {
-        helpers.postArticle(title, date, url);
-        this.getArticle();
-    },
+              <div className="collapse navbar-collapse navbar-ex1-collapse">
+                <ul className="nav navbar-nav navbar-right">
+                  {/* Using <Link> in place of <a> and "to" in place of "href" */}
+                  <li><Link to="/search">Search</Link></li>
+                  <li><Link to="/saved">Saved Articles</Link></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
 
-    deleteArticle: function(article){
-		console.log(article);
-		axios.delete('/api/saved/' + article._id)
-			.then(function(response){
-				this.setState({
-					savedArticles: response.data
-				});
-				return response;
-			}.bind(this));
-		this.getArticle();
-	},
-    //Code to reun when component changes
-    //when component updates this code will run
-    componentDidUpdate: function(priorProps, priorState) {
-        if(priorState.topic != this.state.topic) {
-            console.log("Component has updated");
-            helpers.runQuery(this.state.topic, this.state.startYear, this.state.endYear)
-                .then(function(data) {
-                    console.log(data);
-                    if (data != this.state.results)
-                        {
-                            this.setState({
-                                results: data
-                            })
-                        }
-                }.bind(this))
-        }
-    },
+          {/* Jumbotron */}
+          <div className="jumbotron">
+            <h2 className="text-center"><strong>(ReactJS) New York Times Article Scrubber</strong></h2>
+            <h3 className="text-center">Search for and save articles of interest.</h3>
+          </div>
 
-    //when component mounts this code will run
-    componentDidMount: function() {
-        axios.get("/api/saved")
-            .then(function(response) {
-                this.setState({
-                    savedArticles: response.data
-                });
-            }.bind(this));
-    },
-    //render the function
-    render: function() {
-        return(
-            //html for website rendering
-            <div className="container">        
-                            <div className="row">
-                                <div className="jumbotron" style={{'backgroundImage': 'url(./assets/images/newspaper.jpg)', 'backgroundRepeat': 'no-repeat', 'backgroundPosition': 'center', 'backgroundSize': '100% 100%', 'backgroundAttachment': 'fixed'}}>
-                                    <h2 className="text-center" style={{'color': 'white', 'textShadow': '3px 3px 10px black', 'fontSize': '54px'}}>New York Times Article Search</h2>
-                                    <p className="text-center" style={{'color': 'white', 'textShadow': '3px 3px 10px black', 'fontSize': '24px'}}>Search and save articles of interest!</p>
-                                </div>
-                            </div>
 
-                            <div className="row">
-                                <Form setTerm={this.setTerm}/>
-                            </div>
-            
-                            <div className="row">                      
-                                <Results results={this.state.results} saveArticle={this.saveArticle}/>
-                            </div>
-            
-                            <div className="row">
-                                <Saved savedArticles={this.state.savedArticles} deleteArticle={this.deleteArticle} />
-                            </div>
-                        </div>
-        )
-    }
-    
+          {/* Here we will deploy the sub components (Search or Saved */}
+          {/* These sub-components are getting passed as this.props.children */}
+          {this.props.children}
+
+          <footer>
+            <hr />
+            <p className="pull-right">
+              <i className="fa fa-github" aria-hidden="true"></i>
+              Proudly built using React.js
+            </p>
+          </footer>
+        </div>
+      </div>
+    );
+  }
 });
 
+// Export the module back to the route
 module.exports = Main;

@@ -1,29 +1,18 @@
-//Dependencies
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+var mongoose = require("mongoose");
 
-//Setup article schema
-let ArticleSchema = new Schema ({
-    title: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now,
-        required: true
-    },
-    url: {
-        type: String,
-        trim: true,
-        required: true,
-        unique: true
-    }
+var Schema = mongoose.Schema;
+
+var ArticleSchema = new Schema({
+  title: {
+    type: String
+  },
+  date: {
+    type: Date
+  },
+  url: {
+    type: String
+  }
 });
 
-//Create article model
-let Article = mongoose.model("Article", ArticleSchema);
-
-//Export
+var Article = mongoose.model("Article", ArticleSchema);
 module.exports = Article;
