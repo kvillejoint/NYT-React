@@ -1,11 +1,8 @@
 # NYT-React
+Welcome to the New York Times Article Search web application. This app is a Mongo DB and React JS powered search tool that uses React components and helper functions to query a database and display articles. 
 
-Welcome to the New York Times Article Search web application.
+In addition to article search, users can also save and delete articles at their choosing.
 
-Users are able to search for and display articles of interest. All that is needed is a topic and a range of years in which they wish to find articles. 
+For Deployed Project <a href="https://nyt-react-kv.herokuapp.com/"> Click Here</a>
 
-This full-stack web app is a React-based search tool that uses React components, helper functions, and the React mounting lifecycle to query a database and display articles. Users can also save and delete articles at their choosing.
-
-Tech Stack used for this application includes Mongo DB (for the database), Express JS, Node JS, and React JS.
-
-Link to deployed application: 
+<img src="./img/Homepage.png"></img>
