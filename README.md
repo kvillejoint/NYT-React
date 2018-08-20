@@ -5,4 +5,4 @@ In addition to article search, users can also save and delete articles at their 
 
 For Deployed Project <a href="https://nyt-react-kv.herokuapp.com/"> Click Here</a>
 
-<img src="./img/Homepage.png"></img>
+<img src="./img/Homepage.PNG"></img>
