@@ -4,7 +4,7 @@ var React = require("react");
 // Query Component Declaration
 var Query = React.createClass({
 
-  // Here we set initial variables for the component to be blanks
+  // Initial variables for the component set to be blank
   getInitialState: function() {
     return {
       search: "",
@@ -13,12 +13,12 @@ var Query = React.createClass({
     };
   },
 
-  // Whenever we detect ANY change in the textbox, we register it.
+  // Detect ANY change in the textbox and register it
   handleChange: function(event) {
     console.log("TEXT CHANGED");
 
-    // Here we create syntax to capture any change in text to the query terms (pre-search).
-    // See this Stack Overflow answer for more details:
+    // Capture any change in text to query terms (pre-search).
+    // For future reference - refer to this Stack Overflow answer for more details:
     // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
     var newState = {};
     newState[event.target.id] = event.target.value;
@@ -51,7 +51,7 @@ var Query = React.createClass({
               </div>
               <div className="panel-body">
 
-                {/* Note how we associate the text-box inputs with the state values */}
+                {/* This associates the text-box inputs with the state values */}
                 <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <h4 className=""><strong>Topic</strong></h4>
@@ -87,7 +87,7 @@ var Query = React.createClass({
 
                   </div>
 
-                  {/* Here we create the onClick event that triggers the HandleSubmit */}
+                  {/* onClick event that triggers the HandleSubmit */}
                   <div className="pull-right">
                     <button
                       type="submit"

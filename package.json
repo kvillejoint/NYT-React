@@ -1,7 +1,7 @@
 {
   "name": "nytreact",
   "version": "1.0.0",
-  "description": "",
+  "description": "Welcome to the New York Times Article Search web application.",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.1",
@@ -27,5 +27,13 @@
     "dev": "webpack & node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvillejoint/NYT-React.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kvillejoint/NYT-React/issues"
+  },
+  "homepage": "https://github.com/kvillejoint/NYT-React#readme"
 }

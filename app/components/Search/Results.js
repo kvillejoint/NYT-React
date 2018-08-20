@@ -7,7 +7,7 @@ var helpers = require("../../utils/helpers");
 // Results Component Declaration
 var Results = React.createClass({
 
-  // Here we will save states for the contents we save
+  // Gets initial state and saves it for the search contents we save
   getInitialState: function() {
     return {
       title: "",
